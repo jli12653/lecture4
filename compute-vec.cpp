@@ -12,7 +12,7 @@
 void compute_fn0(double* A, double* B, double* C) { // Implicit vectorization
   //#pragma unroll // does not gaurantee vectorization
   //#pragma GCC ivdep // compiler specific pragma (Ignore Vector Dependency)
-  //#pragma omp simd aligned(A, B, C:64) safelen(4) // requires OpenMP-4
+  #pragma omp simd aligned(A, B, C:64) safelen(4) // requires OpenMP-4
   for (int k = 0; k < VEC_LEN; k++) {
     A[k] = A[k] * B[k] + C[k];
   }
